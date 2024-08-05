@@ -1,4 +1,6 @@
+import { CreatePostController } from "../controllers/Create_post_controller";
 import { navigateTo } from "../router";
+import { CreatePost } from "./create_post";
 import "./header_home.css";
 
 export function HeaderHome() {
@@ -19,6 +21,14 @@ export function HeaderHome() {
             sessionStorage.removeItem('email');
             navigateTo('/Login');
         })
+
+        const button_createPost = document.getElementById('create-post') as HTMLButtonElement;
+        button_createPost.addEventListener('click', () =>{
+            CreatePost();
+            const create_post_controller = new CreatePostController();
+            create_post_controller.cancelButton();
+            create_post_controller.createPost();
+        });
     }
 
     return { html, logic };
