@@ -1,5 +1,7 @@
+import { EditPostController } from "../controllers/Edit_post_controller";
 import { DeletePost } from "../controllers/delete_post_controller";
 import { GetPostsController } from "../controllers/get_allposts_controller";
+import { EditPost } from "./edit_post";
 import './post_home.css';
 
 export function PostHome() {
@@ -33,7 +35,7 @@ export function PostHome() {
                         <p class="title-sec">Porcentaje de aprovación::</p>
                         <p class="city-temperature" id="porcen_aprov">${post.approvalPercentage} %</p>
                         <button class="button-delete-city" id="delete" idCard="${post.id}">Eliminar</button>
-                        <button class="button-edit-city" data-city-id="${post.id}">Editar</button>
+                        <button class="button-edit-city" idCard="${post.id}">Editar</button>
                     </div>
                 `;
                 if (post.approvalPercentage <= 60) {
@@ -60,6 +62,17 @@ export function PostHome() {
                         }
                     };
                 });
+            });
+
+
+            const editButtons = document.querySelectorAll('.button-edit-city');
+            editButtons.forEach(editbutton => {
+                editbutton.addEventListener('click', async () => {
+                    EditPost();
+                    const id = editbutton.getAttribute('idCard') as string;
+                    const editcontroller = new EditPostController(id);
+                    editcontroller.Editpost()
+                })
             });
         });
     };

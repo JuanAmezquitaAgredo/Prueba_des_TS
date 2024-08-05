@@ -11,3 +11,6 @@
   "postUrl": "http://example.com/post",
   "multimediaUrl": "http://example.com/media"
 }
+
+Ejecutar: - npm i
+          - npm run dev
